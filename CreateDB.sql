@@ -145,7 +145,7 @@ alter table [Customer]
 
 alter table [Booking]
 	add constraint fk_booking_service foreign key (ServiceID) references [Service](ServiceID),
-		constraint fk_booking_employee foreign key (EmployeeID) references [Address](EmployeeID),
+		constraint fk_booking_employee foreign key (EmployeeID) references [Employee](EmployeeID),
 		constraint fk_booking_product foreign key (ProductID) references [Product](ProductID);
 
 --
