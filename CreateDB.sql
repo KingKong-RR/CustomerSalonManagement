@@ -16,7 +16,7 @@
 --
 USE master
 
-DROP DATABASE CustomerSalonManagementDB;
+DROP PROCEDURE IF EXISTS CustomerSalonManagementDB;
 go
 
 create database CustomerSalonManagementDB;
@@ -45,7 +45,7 @@ create table [Title]
 create table [Address]
 (
 	[AddressID] 		int				not null	identity(1,1)	unique,
-    [ZIP]				int				not null	identity(1,1),
+    [ZIP]				int				not null,
 	[City] 				varchar(45)		not null,
     constraint pk_address primary key (AddressID)
 );
@@ -79,8 +79,8 @@ create table [Service]
 create table [Discount]
 (
 	[DiscountID]		int 			not null	identity(1,1)	unique,
-    [Visits]			int 			not null	identity(1,1),
-    [DiscountRate]		int				not null	identity(1,1), 
+    [Visits]			int 			not null,
+    [DiscountRate]		int				not null, 
     constraint pk_discount primary key (DiscountID)
 );
 
@@ -94,8 +94,8 @@ create table [Employee]
 	[LastName]			varchar(50)		not null,
 	[DateOfBirth]		Date			not null,
 	[Street]			varchar(50)		not null,
-	[AddressID]			int				not null	identity(1,1),
-	[TitleID]			int				not null	identity(1,1),
+	[AddressID]			int				not null,
+	[TitleID]			int				not null,
     constraint pk_employee primary key (EmployeeID, TitleID)
 );
 
@@ -110,9 +110,9 @@ create table [Customer]
 	[DateOfBirth]		Date			not null,
 	[DateOfEntry]		Date			not null,
 	[Street]			varchar(50)		not null,
-	[TitleID]			int				not null	identity(1,1),
-	[AddressID]			int				not null	identity(1,1),
-	[DiscountID]		int				not null	identity(1,1),
+	[TitleID]			int				not null,
+	[AddressID]			int				not null,
+	[DiscountID]		int				not null,
 
     constraint pk_customer primary key (CustomerID, TitleID, AddressID, DiscountID)
 );
@@ -124,10 +124,10 @@ create table [Booking]
 (
 	[BookingID]	 		int 			not null 	identity(1,1)	unique,
     [Date]				DateTime		not null,
-	[ServiceID]			int				not null	identity(1,1),
-	[EmployeeID]		int				not null	identity(1,1),
-	[ProductID]			int				not null	identity(1,1),
-	[CustomerID]		int				not null	identity(1,1),
+	[ServiceID]			int				not null,
+	[EmployeeID]		int				not null,
+	[ProductID]			int				not null,
+	[CustomerID]		int				not null,
     constraint pk_booking primary key (BookingID, ServiceID, EmployeeID, ProductID)
 );
 
